@@ -82,7 +82,7 @@
             <value description="account_expired">0</value>
             <value description="account_locked">0</value>
             <value description="credentials_expired">0</value>
-        </row>        
+        </row>
     </table>
     <table name="role">
         <column>id</column>
@@ -119,4 +119,31 @@
             <value description="role_id">-2</value>
         </row>
     </table>
+    <!--Camera-START-->
+    <table name="cameras">
+        <column>cameraId</column>
+        <column>creationTime</column>
+        <column>name</column>
+        <column>owner_id</column>
+    <row>
+        <value description="cameraId">-1</value>
+        <value description="creationTime">2014-08-28</value>
+        <value description="name">test-cam1</value>
+        <value description="owner_id">-1</value>
+    </row>
+    <row>
+        <value description="cameraId">-2</value>
+        <value description="creationTime">2014-08-28</value>
+        <value description="name">test-cam2</value>
+        <value description="owner_id">-2</value>
+    </row>
+    <row>
+        <value description="cameraId">-3</value>
+        <value description="creationTime">2014-08-28</value>
+        <value description="name">test-cam3</value>
+        <value description="owner_id">-3</value>
+    </row>
+    </table>
+    <!--Camera-END-->
 </dataset>
+

@@ -6,7 +6,7 @@
     <artifactId>home_security_server_apf</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>AppFuse Spring MVC Application</name>
+    <name>Home Security Server APF</name>
     <url>http://www.mycompany.com</url>
 
     <prerequisites>

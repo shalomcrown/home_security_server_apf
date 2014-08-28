@@ -13,5 +13,9 @@
             <Item name="FileUpload" title="menu.selectFile" page="/fileupload"/>
         </Menu>
         <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
+        <!--Camera-START-->
+        <Menu name="CameraMenu" title="cameraList.title" page="/cameras"/>
+        <!--Camera-END-->
     </Menus>
+
 </MenuConfig>

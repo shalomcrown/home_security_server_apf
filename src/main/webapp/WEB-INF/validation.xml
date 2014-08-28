@@ -50,5 +50,9 @@
                 <arg key="user.password"/>
             </field>
         </form>
+        <!--Camera-START-->
+        <form name="camera">
+        </form>
+        <!--Camera-END-->
     </formset>
 </form-validation>

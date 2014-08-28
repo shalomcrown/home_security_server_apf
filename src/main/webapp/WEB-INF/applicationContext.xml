@@ -13,6 +13,16 @@
 
     <!-- Add new DAOs here -->
 
+    <!--CameraManager-START-->
+    <bean id="cameraManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.kirayim.homesec.model.Camera"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--CameraManager-END-->
+
     <!-- Add new Managers here -->
     
     <!-- Configure and Alternative PasswordTokenManager -->

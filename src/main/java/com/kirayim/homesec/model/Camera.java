@@ -67,7 +67,7 @@ public class Camera {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long cameraId;
+    Long cameraId;
 
     @Column
     String name;
@@ -87,14 +87,14 @@ public class Camera {
     /**
      * @return the cameraId
      */
-    public long getCameraId() {
+    public Long getCameraId() {
         return cameraId;
     }
 
     /**
      * @param cameraId the cameraId to set
      */
-    public void setCameraId(long cameraId) {
+    public void setCameraId(Long cameraId) {
         this.cameraId = cameraId;
     }
 

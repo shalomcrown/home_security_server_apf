@@ -12,6 +12,9 @@
     <menu:displayMenu name="UserMenu"/>
     <menu:displayMenu name="AdminMenu"/>
     <menu:displayMenu name="Logout"/>
+    <!--Camera-START-->
+    <menu:displayMenu name="CameraMenu"/>
+    <!--Camera-END-->
 </ul>
 </div>
 </menu:useMenuDisplayer>
