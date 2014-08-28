@@ -39,7 +39,6 @@ package com.kirayim.homesec.model;
 
 //===== Java extension libraries =====
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,8 +47,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import org.appfuse.model.BaseObject;
 import org.appfuse.model.User;
+import org.hibernate.annotations.Index;
 
 
 //===== Third party =====
@@ -63,10 +63,11 @@ import org.appfuse.model.User;
  *
  */
 @Entity(name="cameras")
-public class Camera {
+public class Camera extends BaseObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Index(name = "cameras_name_index")
     Long cameraId;
 
     @Column

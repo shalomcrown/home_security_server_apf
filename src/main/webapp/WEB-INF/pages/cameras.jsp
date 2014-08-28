@@ -40,7 +40,7 @@
         paramId="cameraId" paramProperty="cameraId" titleKey="camera.cameraId"/>
     <display:column property="cameraId" media="csv excel xml pdf" titleKey="camera.cameraId"/>
     <display:column property="creationTime" sortable="true" titleKey="camera.creationTime"/>
-    <display:column property="owner.username" sortable="true" titleKey="camera.owner.username"/>
+    <display:column property="owner.username" sortable="true" titleKey="user.username"/>
     <display:column property="name" sortable="true" titleKey="camera.name"/>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="cameraList.camera"/></display:setProperty>

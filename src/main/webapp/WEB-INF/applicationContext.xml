@@ -14,7 +14,7 @@
     <!-- Add new DAOs here -->
 
     <!--CameraManager-START-->
-    <bean id="cameraManager" class="org.appfuse.service.impl.GenericManagerImpl">
+    <bean id="cameraManager" class="com.kirayim.homesec.service.impl.CameraManagerImpl">
         <constructor-arg>
             <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.kirayim.homesec.model.Camera"/>
