@@ -9,5 +9,6 @@
         <mapping class="org.appfuse.model.User"/>
         <mapping class="org.appfuse.model.Role"/>
         <mapping class="com.kirayim.homesec.model.Camera"/>
+        <mapping class="com.kirayim.homesec.model.Image"/>
     </session-factory>
 </hibernate-configuration>

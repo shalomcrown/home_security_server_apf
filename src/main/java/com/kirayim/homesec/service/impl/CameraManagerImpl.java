@@ -7,6 +7,7 @@
 package com.kirayim.homesec.service.impl;
 
 import com.kirayim.homesec.model.Camera;
+import com.kirayim.homesec.service.CameraManager;
 import java.util.Date;
 import org.appfuse.dao.GenericDao;
 import org.appfuse.model.User;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Service;
  * @author shalom
  */
 @Service("cameraManager")
-public class CameraManagerImpl extends GenericManagerImpl<Camera, Long> {
+public class CameraManagerImpl extends GenericManagerImpl<Camera, Long> implements CameraManager {
 
 
     public CameraManagerImpl(GenericDao<Camera, Long> genericDao) {

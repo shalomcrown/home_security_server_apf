@@ -23,8 +23,18 @@
     </bean>
     <!--CameraManager-END-->
 
+    <!--ImageManager-START-->
+    <bean id="imageManager" class="com.kirayim.homesec.service.impl.ImageManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.kirayim.homesec.model.Image"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--ImageManager-END-->
+
     <!-- Add new Managers here -->
-    
+
     <!-- Configure and Alternative PasswordTokenManager -->
 	<!-- <bean id="passwordTokenManager" class="org.appfuse.service.impl.PersistentPasswordTokenManagerImpl" autowire="default" /> -->
 </beans>

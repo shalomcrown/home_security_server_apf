@@ -16,6 +16,10 @@
         <!--Camera-START-->
         <Menu name="CameraMenu" title="cameraList.title" page="/cameras"/>
         <!--Camera-END-->
+        <!--Image-START-->
+        <Menu name="ImageMenu" title="imageList.title" page="/images"/>
+        <!--Image-END-->
     </Menus>
+
 
 </MenuConfig>

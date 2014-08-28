@@ -24,7 +24,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests" 
-        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,CameraTests"
+        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,ImageTests,CameraTests"
         description="Call and executes all test cases (targets)"/>
     
     <!-- runs user-related tests -->
@@ -349,5 +349,100 @@
             </steps>
         </webtest>
     </target>    <!--Camera-END-->
+    <!--Image-START-->
+    <!-- runs image-related tests -->
+    <target name="ImageTests"
+            depends="SearchImages,EditImage,SaveImage,AddImage,DeleteImage"
+            description="Call and executes all image test cases (targets)">
+        <echo>Successfully ran all Image UI tests!</echo>
+    </target>
+
+    <!-- Verify the images list screen displays without errors -->
+    <target name="SearchImages" description="Tests search for and displaying all images">
+        <webtest name="searchImages">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Image link" url="/images"/>
+                <verifytitle description="we should see the imageList title"
+                    text=".*${imageList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the imageList title"
+                    text=".*${imageList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit image screen displays without errors -->
+    <target name="EditImage" description="Tests editing an existing Image's information">
+        <webtest name="editImage">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Image List" url="/images"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the imageDetail title"
+                    text=".*${imageDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a image and then save -->
+    <target name="SaveImage" description="Tests editing and saving a image">
+        <webtest name="saveImage">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Image link" url="/imageform?id=-1"/>
+                <verifytitle description="we should see the imageDetail title"
+                    text=".*${imageDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${imageDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${image.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Image -->
+    <target name="AddImage" description="Adds a new Image">
+        <webtest name="addImage">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/imageform"/>
+                <verifytitle description="we should see the imageDetail title"
+                    text=".*${imageDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Image List appears if save successful"
+                    text=".*${imageList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${image.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing image -->
+    <target name="DeleteImage" description="Deletes existing Image">
+        <webtest name="deleteImage">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Image link" url="/imageform?id=-1"/>
+                <prepareDialogResponse description="Confirm delete" dialogType="confirm" response="true"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifyNoDialogResponses/>
+                <verifytitle description="display Image List" text=".*${imageList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${image.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Image-END-->
 </project>
+
 

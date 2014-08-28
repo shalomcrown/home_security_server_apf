@@ -47,6 +47,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 import org.appfuse.model.BaseObject;
 import org.appfuse.model.User;
 import org.hibernate.annotations.Index;
@@ -62,6 +63,7 @@ import org.hibernate.annotations.Index;
  * @author shalom
  *
  */
+@XmlRootElement
 @Entity(name="cameras")
 public class Camera extends BaseObject {
 

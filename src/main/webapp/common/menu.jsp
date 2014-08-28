@@ -15,6 +15,9 @@
     <!--Camera-START-->
     <menu:displayMenu name="CameraMenu"/>
     <!--Camera-END-->
+    <!--Image-START-->
+    <menu:displayMenu name="ImageMenu"/>
+    <!--Image-END-->
 </ul>
 </div>
 </menu:useMenuDisplayer>
