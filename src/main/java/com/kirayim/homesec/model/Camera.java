@@ -45,8 +45,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.appfuse.model.User;
 
 
 //===== Third party =====
@@ -74,8 +77,11 @@ public class Camera {
     Date creationTime = new Date();
 
 
-    public Camera() {}
+    @ManyToOne
+    User owner;
 
+
+    public Camera() {}
 
 
     /**
@@ -133,6 +139,7 @@ public class Camera {
         result = prime * result
                 + ((creationTime == null) ? 0 : creationTime.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((owner == null) ? 0 : owner.hashCode());
         return result;
     }
 
@@ -162,6 +169,11 @@ public class Camera {
                 return false;
         } else if (!name.equals(other.name))
             return false;
+        if (owner == null) {
+            if (other.owner != null)
+                return false;
+        } else if (!owner.equals(other.owner))
+            return false;
         return true;
     }
 
@@ -174,6 +186,22 @@ public class Camera {
     public String toString() {
         return "Camera [cameraId=" + cameraId + ", name=" + name
                 + ", creationTime=" + creationTime + "]";
+    }
+
+
+    /**
+     * @return the owner
+     */
+    public User getOwner() {
+        return owner;
+    }
+
+
+    /**
+     * @param owner the owner to set
+     */
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
 
