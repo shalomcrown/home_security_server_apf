@@ -187,6 +187,12 @@
     <servlet>
         <servlet-name>CXFServlet</servlet-name>
         <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+       <multipart-config>
+            <location>/tmp</location>
+            <max-file-size>35000000</max-file-size>
+            <max-request-size>218018841</max-request-size>
+            <file-size-threshold>0</file-size-threshold>
+        </multipart-config>
     </servlet>
 
     <servlet-mapping>

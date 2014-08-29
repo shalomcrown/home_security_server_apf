@@ -8,9 +8,13 @@ package com.kirayim.homesec.service;
 
 import com.kirayim.homesec.model.Image;
 import java.util.List;
-import javax.jws.WebService;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import org.appfuse.service.GenericManager;
 
 /**
@@ -22,4 +26,10 @@ public interface ImageManager extends GenericManager<Image, Long>
    {
    @GET
    List<Image> getAll();
+
+
+   @POST
+   @Consumes(MediaType.MULTIPART_FORM_DATA)
+   String handleFileUpload(@Context HttpServletRequest request);
+
    }
