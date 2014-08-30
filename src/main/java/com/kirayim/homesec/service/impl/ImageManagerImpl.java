@@ -6,33 +6,36 @@
 
 package com.kirayim.homesec.service.impl;
 
+import com.kirayim.homesec.model.Camera;
 import com.kirayim.homesec.model.Image;
+import com.kirayim.homesec.service.CameraManager;
 import com.kirayim.homesec.service.ImageManager;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import javax.jws.WebService;
+import javassist.tools.web.BadHttpRequest;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
-import javax.ws.rs.core.Context;
+import javax.ws.rs.BadRequestException;
+import javax.ws.rs.NotAllowedException;
 import org.apache.commons.io.IOUtils;
+import org.apache.tika.mime.MimeType;
+import org.apache.tika.mime.MimeTypeException;
+import org.apache.tika.mime.MimeTypes;
 import org.appfuse.dao.GenericDao;
+import org.appfuse.model.User;
 import org.appfuse.service.impl.GenericManagerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -43,6 +46,8 @@ public class ImageManagerImpl extends GenericManagerImpl<Image, Long>  implement
    public static Logger logger = LoggerFactory.getLogger(ImageManagerImpl.class.getName());
    static File uploadDir = new File(System.getProperty("user.home"), ".homesec_images");
 
+   @Autowired
+   CameraManager cameraManager;
 
    public ImageManagerImpl(GenericDao<Image, Long> genericDao) {
         this.dao = genericDao;
@@ -55,8 +60,9 @@ public class ImageManagerImpl extends GenericManagerImpl<Image, Long>  implement
 
 
    @Override
-    public String handleFileUpload(HttpServletRequest request){
-      String name = "fred";
+    public Image handleFileUpload(long cameraId, HttpServletRequest request){
+      String extension = null;
+      Date uploadTime = new Date();
 
       String encoding = request.getCharacterEncoding();
 
@@ -68,14 +74,52 @@ public class ImageManagerImpl extends GenericManagerImpl<Image, Long>  implement
           }
       }
 
+      User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+      Camera camera = cameraManager.get(cameraId);
+
+      if (camera == null) {
+         throw new NotAllowedException("Imvalid camera ID");
+      }
+
+      if (! camera.getOwner().equals(user)) {
+         throw new NotAllowedException("Camera doesn't belong to current user");
+      }
+
+      /* -------------------------------------------------
+       * Calculate output file name
+       * ------------------------------------------------- */
+
+      String name = String.format("homesec_image_%1$08d_%2$TY%2$Tm%2$Td_%2$TH%2$TM%2$TS%2$TL", camera.getCameraId(), uploadTime);
+
+      /* -------------------------------------------------
+       * Get uploaded file and write to destination
+       * ------------------------------------------------- */
+
       try {
          if (request.getParts().size() > 1) {
-            return "Only one upload per request!";
+            throw new NotAllowedException("Only one image upload per transaction");
          }
 
          for (Part part : request.getParts()) {
             if (! uploadDir.exists()) {
                uploadDir.mkdirs();
+            }
+
+            String contentType = part.getContentType();
+
+            if (contentType != null) {
+               try {
+                  MimeTypes allTypes = MimeTypes.getDefaultMimeTypes();
+                  MimeType mimeType = allTypes.forName(contentType);
+
+                  extension = mimeType.getExtension();
+
+                  name += extension;
+
+               } catch (MimeTypeException mimeTypeException){
+                  logger.warn("Mime? ", mimeTypeException);
+               }
             }
 
             File outputFile = new File(uploadDir, name);
@@ -87,14 +131,29 @@ public class ImageManagerImpl extends GenericManagerImpl<Image, Long>  implement
             IOUtils.copy(in, out);
             IOUtils.closeQuietly(in);
             IOUtils.closeQuietly(out);
-//            part.write(new File(uploadDir, name).getAbsolutePath());
          }
-
       } catch (IOException | ServletException e ) {
-         logger.warn("Bad upload", e);
+         throw new BadRequestException(e);
       }
 
-       return "What?";
+      /* -------------------------------------------------
+       * If extension is unknown, re-read file to try
+       * and get extension
+       * ------------------------------------------------- */
+
+      if (extension == null) {
+      // TODO:
+      }
+
+      /* -------------------------------------------------
+       * Save image record in DB
+       * ------------------------------------------------- */
+
+      Image image = new Image(camera, name, uploadTime);
+
+      dao.save(image);
+
+       return image;
     }
 
 }

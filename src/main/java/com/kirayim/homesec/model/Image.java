@@ -42,6 +42,13 @@ public class Image
 
    public Image() {}
 
+   public Image(Camera camera, String filename, Date uploadTime) {
+      this.camera = camera;
+      this.filename = filename;
+      this.uploadTime = uploadTime;
+   }
+
+
    @Override
    public String toString()
       {

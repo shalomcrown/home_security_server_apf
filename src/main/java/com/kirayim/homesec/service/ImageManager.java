@@ -13,6 +13,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import org.appfuse.service.GenericManager;
@@ -29,7 +30,8 @@ public interface ImageManager extends GenericManager<Image, Long>
 
 
    @POST
+   @Path("{cameraId}")
    @Consumes(MediaType.MULTIPART_FORM_DATA)
-   String handleFileUpload(@Context HttpServletRequest request);
+   Image handleFileUpload(@PathParam("cameraId") long cameraId,  @Context HttpServletRequest request);
 
    }

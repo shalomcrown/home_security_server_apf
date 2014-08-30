@@ -9,6 +9,7 @@ package com.kirayim.homesec.service.impl;
 import com.kirayim.homesec.model.Camera;
 import com.kirayim.homesec.service.CameraManager;
 import java.util.Date;
+import java.util.List;
 import org.appfuse.dao.GenericDao;
 import org.appfuse.model.User;
 import org.appfuse.service.impl.GenericManagerImpl;
@@ -28,8 +29,13 @@ public class CameraManagerImpl extends GenericManagerImpl<Camera, Long> implemen
     }
 
    @Override
-   public Camera save(Camera object)
-      {
+   public List<Camera> getAll() {
+      return super.getAll(); //To change body of generated methods, choose Tools | Templates.
+      }
+
+
+   @Override
+   public Camera save(Camera object) {
 
       // New object
       if (object.getCameraId() == null) {

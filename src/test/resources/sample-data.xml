@@ -154,19 +154,19 @@
     <row>
         <value description="id">-1</value>
         <value description="camera_cameraId">-1</value>
-        <value description="filename">HyHzDtUgGoXcKcDzCkEnZoHjNpPpQdKrEuAiLbZiUcCkHfCpXbWyBjYxVnTxZnZeAdTcUxRgDhCkZhDeVgZcDdMxSlInVoZxPgCjMqQiAzExGfBdEnPuRjIhSxMoBxHkAhNuJcYcLmApGyAwXtRyXdPqKyBaYcOxLsSiKeBaDmGpLpKxHsVpLrFfWlCjQuFvTyHmLvRhGfYgBbBiSrThEpBtRdMmHlVgJeKqYcHdQxPyIoQsSlMjKbQzBiCoAcO</value>
+        <value description="filename">test-image-1</value>
         <value description="uploadTime">2014-08-28</value>
     </row>
     <row>
         <value description="id">-2</value>
         <value description="camera_cameraId">-2</value>
-        <value description="filename">VnKbQnPtBrKiHrSjViRgXbFnYeRbMlLeVsAhSeBzRgCdQhRxAsHhQmDrYwDfLiGwNlEvPfHkLeEqRyQoRwFhEcRmMnKzSkVqUzTyYaIbZiXaLzLtVuHpNqXhPbIiRsWyYwMlXnUhIwMdNsTrGsRdXlKeHmVaCxOlTzGcYkOrTvVuKtYcSwFdQeGxMoXdXxZxXrUfCcPaMuSpGzTvEyFsOkXhVlUaSuNwOgMmGoDvAwJtUqAvXoKvIbNmGbUaEcV</value>
+        <value description="filename">test-image-2</value>
         <value description="uploadTime">2014-08-28</value>
     </row>
     <row>
         <value description="id">-3</value>
         <value description="camera_cameraId">-3</value>
-        <value description="filename">VdNmZvPeYnCzEmJnDcHeOgNkVhJtAzCxEoDbQqJwIhWtAaZgQhMcNlGyYwClTsPjLiEfQzYqFzOyDbEuIwVqPtUkVmLoUnPyFnHpNaNgLnVjFzLdUnObVoTiJiLlIcVpCdSnZnMfDmPcQfSoRpWwTkEbDzCvShWfGrVkMnXjQaThFsLuYxHaVzElKzGwSgXiNdViPqKuKnTlNmSqSpPyAlSwGcJnNpQiTuQxZkYaOuTuBsGmYoYhYtVqFjOzQjN</value>
+        <value description="filename">test-image-3</value>
         <value description="uploadTime">2014-08-28</value>
     </row>
     </table>

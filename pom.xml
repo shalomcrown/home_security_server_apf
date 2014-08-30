@@ -469,6 +469,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+         <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-core</artifactId>
+            <version>1.5</version>
+         </dependency>
+
         <!-- Add Bootstrap via WebJars -->
         <dependency>
             <groupId>org.webjars</groupId>
